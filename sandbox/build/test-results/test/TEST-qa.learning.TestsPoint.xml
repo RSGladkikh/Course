@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="qa.learning.TestsPoint" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-01-17T14:06:09" hostname="DESKTOP-O3VB4IV" time="0.016">
+  <properties/>
+  <testcase name="test1" classname="qa.learning.TestsPoint" time="0.008"/>
+  <testcase name="test2" classname="qa.learning.TestsPoint" time="0.001"/>
+  <testcase name="test3" classname="qa.learning.TestsPoint" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

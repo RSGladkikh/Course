@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "FirstTask"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.7.1'
+}
+
+test {
+    useTestNG()
+    testLogging {
+        events "passed"
+    }
+}
