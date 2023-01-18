@@ -1,4 +1,4 @@
-package qa.learning;
+package qa.learning.model;
 
 import java.util.Objects;
 

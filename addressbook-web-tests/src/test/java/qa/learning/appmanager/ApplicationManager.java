@@ -1,27 +1,26 @@
-package qa.learning;
+package qa.learning.appmanager;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import qa.learning.model.ContactData;
+import qa.learning.model.GroupData;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestBase {
+public class ApplicationManager {
+    public WebDriver driver;
     JavascriptExecutor js;
-    private WebDriver driver;
     private Map<String, Object> vars;
 
-    @Before
-    public void setUp() {
-      driver = new ChromeDriver();
-      js = (JavascriptExecutor) driver;
-      vars = new HashMap<String, Object>();
-      driver.get("http://localhost/addressbook/");
-      login("admin", "secret");
+    public void init() {
+        driver = new ChromeDriver();
+        js = (JavascriptExecutor) driver;
+        vars = new HashMap<String, Object>();
+        driver.get("http://localhost/addressbook/");
+        login("admin", "secret");
     }
 
     private void login(String username, String password) {
@@ -32,13 +31,11 @@ public class TestBase {
       driver.findElement(By.cssSelector("input:nth-child(7)")).click();
     }
 
-    @After
-    public void tearDown() {
-      driver.findElement(By.linkText("Logout")).click();
-      driver.quit();
+    public void stop() {
+        driver.quit();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
       driver.findElement(By.name("group_name")).click();
       driver.findElement(By.name("group_name")).sendKeys(groupData.name());
       driver.findElement(By.name("group_header")).click();
@@ -47,23 +44,23 @@ public class TestBase {
       driver.findElement(By.name("group_footer")).sendKeys(groupData.footer());
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
       driver.findElement(By.name("submit")).click();
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
       driver.findElement(By.name("new")).click();
     }
 
-    protected void gotoGroupPage() {
+    public void gotoGroupPage() {
       driver.findElement(By.linkText("groups")).click();
     }
 
-    protected void gotoHomePage() {
+    public void gotoHomePage() {
       driver.findElement(By.linkText("home")).click();
     }
 
-    protected void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData) {
       driver.findElement(By.name("firstname")).click();
       driver.findElement(By.name("firstname")).sendKeys(contactData.firstName());
       driver.findElement(By.name("lastname")).click();
@@ -76,11 +73,11 @@ public class TestBase {
       driver.findElement(By.name("email")).sendKeys(contactData.email());
     }
 
-    protected void submitContactCreation() {
+    public void submitContactCreation() {
       driver.findElement(By.cssSelector("input:nth-child(87)")).click();
     }
 
-    protected void initContactCreation() {
+    public void initContactCreation() {
       driver.findElement(By.linkText("add new")).click();
     }
 }
