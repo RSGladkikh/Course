@@ -16,8 +16,9 @@ public class TestBase {
 
     @After
     public void tearDown() {
-      app.driver.findElement(By.linkText("Logout")).click();
-      app.stop();
+        app.stop();
     }
+
+
 
 }
