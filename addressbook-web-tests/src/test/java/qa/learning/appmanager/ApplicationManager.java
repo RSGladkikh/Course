@@ -1,6 +1,5 @@
 package qa.learning.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationManager {
+    private SessionHelper sessionHelper;
     private ContactHelper contactHelper;
     public GroupHelper groupHelper;
     public NavigationHelper navigationHelper;
@@ -24,28 +24,17 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(driver);
         groupHelper = new GroupHelper(driver);
         contactHelper = new ContactHelper(driver);
-        login("admin", "secret");
-    }
-
-    private void login(String username, String password) {
-      driver.findElement(By.name("user")).click();
-      driver.findElement(By.name("user")).sendKeys(username);
-      driver.findElement(By.name("pass")).click();
-      driver.findElement(By.name("pass")).sendKeys(password);
-      driver.findElement(By.cssSelector("input:nth-child(7)")).click();
+        sessionHelper = new SessionHelper(driver);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
-        logout();
+        sessionHelper.logout();
         driver.quit();
     }
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
-    }
-
-    private void logout() {
-        driver.findElement(By.linkText("Logout")).click();
     }
 
     public GroupHelper getGroupHelper() {
@@ -54,5 +43,9 @@ public class ApplicationManager {
 
     public ContactHelper getContactHelper() {
         return contactHelper;
+    }
+
+    public SessionHelper getSessionHelper() {
+        return sessionHelper;
     }
 }
