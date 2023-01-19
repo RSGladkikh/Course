@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import qa.learning.model.ContactData;
 
+import static org.openqa.selenium.By.cssSelector;
+
+
 public class ContactHelper extends BaseHelper {
 
     public ContactHelper(WebDriver driver) {
@@ -25,4 +28,16 @@ public class ContactHelper extends BaseHelper {
     public void initContactCreation() {
         driver.findElement(By.linkText("add new")).click();
     }
+
+    public void selectContact() { click(By.name("selected[]"));}
+
+    public void initContactDeletion() { click(cssSelector("div:nth-child(8)"));}
+
+
+
+    public void initContactEdit() { click(By.cssSelector("td:nth-child(8)"));}
+
+
+    public void submitContactEdit() { click(By.cssSelector("input[type=submit]:nth-child(86)"));}
+
 }
