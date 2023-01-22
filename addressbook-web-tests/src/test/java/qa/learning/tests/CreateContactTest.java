@@ -6,7 +6,7 @@ import qa.learning.model.ContactData;
 public class CreateContactTest extends TestBase {
 
   @Test
-  public void createContact() {
+  public void testCreateContact() {
     app.getContactHelper().initContactCreation();
     app.getContactHelper().fillContactForm(new ContactData("Contactname", "Contactsurname", "world", "+79113332255", "test@mail.test"));
     app.getContactHelper().submitContactCreation();

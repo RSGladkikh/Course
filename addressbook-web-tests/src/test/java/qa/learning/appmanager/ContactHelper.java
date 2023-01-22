@@ -40,4 +40,18 @@ public class ContactHelper extends BaseHelper {
 
     public void submitContactEdit() { click(By.cssSelector("input[type=submit]:nth-child(86)"));}
 
+    public boolean isThereAContact() {
+        return (isElementPresent(By.name("selected[]")));
+    }
+    public void createContact (ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    private void returnToHomePage() {
+        click(By.linkText("home page"));
+    }
+
 }

@@ -24,11 +24,35 @@ public class GroupHelper extends BaseHelper {
         click(By.name("new"));
     }
 
-    public void selectGroup() { click(By.name("selected[]"));}
+    public void selectGroup() {
+        click(By.name("selected[]"));
+    }
 
-    public void groupDeletion() { click(By.name("delete"));}
+    public void groupDeletion() {
+        click(By.name("delete"));
+    }
 
-    public void initGroupEdit() { click(By.name("edit"));}
+    public void initGroupEdit() {
+        click(By.name("edit"));
+    }
 
-    public void submitGroupEdit() { click(By.name("update"));}
+    public void submitGroupEdit() {
+        click(By.name("update"));
+    }
+
+    public void createGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    private void returnToGroupPage() {
+        click(By.linkText("group page"));
+    }
+
+    public boolean isThereAGroup() {
+        return (isElementPresent(By.name("selected[]")));
+    }
 }
+
