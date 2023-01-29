@@ -3,17 +3,59 @@ package qa.learning.model;
 import java.util.Objects;
 
 public final class ContactData {
+    private final int id;
     private final String firstName;
-    private final String secondName;
+    private final String lastName;
     private final String address;
-    private final String phone;
+    private final String phoneMobile;
     private final String email;
 
-    public ContactData(String firstName, String secondName, String address, String phone, String email) {
+    public ContactData(int id, String firstName, String lastName, String address, String phoneMobile, String email) {
+        this.id = id;
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.lastName = lastName;
         this.address = address;
-        this.phone = phone;
+        this.phoneMobile = phoneMobile;
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactData that = (ContactData) o;
+
+        if (!Objects.equals(firstName, that.firstName)) return false;
+        return Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        return result;
+    }
+
+    public ContactData(String firstName, String lastName, String address, String phoneMobile, String email) {
+        this.id = Integer.MAX_VALUE;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneMobile = phoneMobile;
         this.email = email;
     }
 
@@ -21,47 +63,20 @@ public final class ContactData {
         return firstName;
     }
 
-    public String secondName() {
-        return secondName;
+    public String lastName() {
+        return lastName;
     }
 
     public String address() {
         return address;
     }
 
-    public String phone() {
-        return phone;
+    public String phoneMobile() {
+        return phoneMobile;
     }
 
     public String email() {
         return email;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (ContactData) obj;
-        return Objects.equals(this.firstName, that.firstName) &&
-                Objects.equals(this.secondName, that.secondName) &&
-                Objects.equals(this.address, that.address) &&
-                Objects.equals(this.phone, that.phone) &&
-                Objects.equals(this.email, that.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, secondName, address, phone, email);
-    }
-
-    @Override
-    public String toString() {
-        return "ContactData[" +
-                "firstName=" + firstName + ", " +
-                "secondName=" + secondName + ", " +
-                "address=" + address + ", " +
-                "phone=" + phone + ", " +
-                "email=" + email + ']';
     }
 
 }
