@@ -1,37 +1,37 @@
 package qa.learning.tests;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import qa.learning.model.GroupData;
-
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 public class EditGroupTest extends TestBase{
 
+
     @Test
     public void testEditGroupTest() {
-        app.getNavigationHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereAGroup()) {
-            app.getGroupHelper().createGroup(new GroupData("group1", "111", "222"));
+        app.goTo().groupPage();
+        if (app.group().all().size() == 0) {
+            app.group().create(new GroupData().withName("group1").withHeader("111").withFooter("222"));
         };
-        List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        app.getGroupHelper().initGroupEdit();
-        GroupData group = new GroupData(before.get(before.size() - 1).getId(), "group1Edited", "222", "333");
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupEdit();
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList();
+        Set<GroupData> before = app.group().all();
+        GroupData editedGroup = before.iterator().next();
+        GroupData group = new GroupData().withId(editedGroup.getId()).withName("group1Edited").withHeader("222").withFooter("333");
+        app.group().edit(group);
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(before.size(), after.size());
 
-        before.remove(before.size() - 1);
+        before.remove(editedGroup);
         before.add(group);
+        assertThat(after, equalTo(before));
 
-        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-        before.sort(byId);
-        after.sort(byId);
-        Assert.assertEquals(before,after);
+
+
+
     }
+
+
 }

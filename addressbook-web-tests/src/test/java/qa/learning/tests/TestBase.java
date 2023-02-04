@@ -7,7 +7,7 @@ import qa.learning.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected final ApplicationManager app = new ApplicationManager(Browser.CHROME);
+    protected static final ApplicationManager app = new ApplicationManager(Browser.CHROME);
 
     @Before
     public void setUp() {
@@ -18,6 +18,8 @@ public class TestBase {
     public void tearDown() {
         app.stop();
     }
+
+
 
 
 

@@ -10,7 +10,7 @@ public class NavigationHelper extends BaseHelper {
 
     }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
       if (isElementPresent(By.tagName("h1"))
               && driver.findElement(By.tagName("h1")).getText().equals("Groups")
               && isElementPresent(By.name("new"))) {
@@ -20,7 +20,7 @@ public class NavigationHelper extends BaseHelper {
     }
 
 
-    public void gotoHomePage() {
+    public void homePage() {
         if (isElementPresent(By.name("searchform"))) {
             return;
         }

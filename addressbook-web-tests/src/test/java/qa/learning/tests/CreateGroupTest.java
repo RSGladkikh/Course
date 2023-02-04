@@ -1,35 +1,28 @@
 package qa.learning.tests;
 
-import org.junit.Assert;
+
 import org.junit.Test;
 import qa.learning.model.GroupData;
-
-
-import java.util.Comparator;
-import java.util.List;
-
-
+import java.util.Set;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 
 public class CreateGroupTest extends TestBase {
 
   @Test
   public void testCreateGroup() {
-    app.getNavigationHelper().gotoGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().initGroupCreation();
-    GroupData group = new GroupData("group2", "112", "222");
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().submitGroupCreation();
-    app.getNavigationHelper().gotoGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(before.size() + 1, after.size());
+    app.goTo().groupPage();
+    Set<GroupData> before = app.group().all();
+    GroupData group = new GroupData().withName("Group2").withFooter("876").withHeader("666");
+    app.group().create(group);
+    Set<GroupData> after = app.group().all();
+    assertThat(before.size() + 1, equalTo(after.size()));
 
+
+    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
     before.add(group);
-    Comparator<? super GroupData> byId = Comparator.comparingInt(groupData -> groupData.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    assertThat(after, equalTo(before));
   }
 
 }
