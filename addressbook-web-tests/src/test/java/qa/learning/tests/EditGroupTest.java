@@ -29,8 +29,8 @@ public class EditGroupTest extends TestBase{
         GroupData editedGroup = before.iterator().next();
         GroupData group = new GroupData().withId(editedGroup.getId()).withName("group1Edited").withHeader("222").withFooter("333");
         app.group().edit(group);
+        Assert.assertEquals(before.size(), app.group().count());
         Groups after = app.group().all();
-        Assert.assertEquals(before.size(), after.size());
         assertThat(after, equalTo(before.withEdited(editedGroup, group)));
 
 

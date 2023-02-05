@@ -5,7 +5,6 @@ import org.junit.Test;
 import qa.learning.model.GroupData;
 import qa.learning.model.Groups;
 
-import java.util.Set;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
@@ -25,10 +24,9 @@ public class DeleteGroupTest extends TestBase {
         Groups before = app.group().all();
         GroupData deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);
+        assertThat(app.group().count(), equalTo(before.size() - 1));
         Groups after = app.group().all();
-        assertThat(after.size(), equalTo(before.size() - 1));
-
-        assertThat(after, equalTo(before.withoutAdded(deletedGroup)));
+        assertThat(after, equalTo(before.withoutDeleted(deletedGroup)));
         }
 
 
