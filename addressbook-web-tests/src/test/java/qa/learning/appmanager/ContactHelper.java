@@ -23,6 +23,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("mobile"), contactData.phoneMobile());
         type(By.name("work"), contactData.phoneWork());
         type(By.name("email"), contactData.email());
+        attach(By.name("photo"), contactData.photo());
     }
 
     public void submitCreation() {

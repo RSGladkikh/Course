@@ -1,5 +1,6 @@
 package qa.learning.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public final class ContactData {
@@ -14,9 +15,16 @@ public final class ContactData {
     private String email;
     private String email2;
     private String email3;
+    private File photo;
 
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
-
+    public File photo() {
+        return photo;
+    }
 
     public ContactData withId(int id) {
         this.id = id;
