@@ -1,5 +1,7 @@
 package qa.learning.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import java.io.File;
 import java.util.Objects;
 

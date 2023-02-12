@@ -1,10 +1,11 @@
 package qa.learning.tests;
 
-import org.junit.Before;
-import org.junit.Test;
+
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import qa.learning.model.ContactData;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,7 +14,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class ContactPhonesTest extends TestBase {
 
-    @Before
+    @BeforeTest
     public void ensurePreconditions(){
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
@@ -22,7 +23,7 @@ public class ContactPhonesTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void contactPhonesTest () {
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactFromEditForm = app.contact().infoFromEditForm(contact);

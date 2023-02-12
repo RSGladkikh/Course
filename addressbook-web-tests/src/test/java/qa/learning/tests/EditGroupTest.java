@@ -1,19 +1,16 @@
 package qa.learning.tests;
 
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import qa.learning.model.GroupData;
 import qa.learning.model.Groups;
 
-import java.util.Set;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class EditGroupTest extends TestBase{
 
-    @Before
+    @BeforeTest
     public void ensurePreconditions(){
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
@@ -29,7 +26,7 @@ public class EditGroupTest extends TestBase{
         GroupData editedGroup = before.iterator().next();
         GroupData group = new GroupData().withId(editedGroup.getId()).withName("group1Edited").withHeader("222").withFooter("333");
         app.group().edit(group);
-        Assert.assertEquals(before.size(), app.group().count());
+        assertThat(before.size(),equalTo(app.group().count()));
         Groups after = app.group().all();
         assertThat(after, equalTo(before.withEdited(editedGroup, group)));
 

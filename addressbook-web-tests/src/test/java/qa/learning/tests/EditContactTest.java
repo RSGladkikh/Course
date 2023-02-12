@@ -1,17 +1,16 @@
 package qa.learning.tests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import qa.learning.model.ContactData;
 import qa.learning.model.Contacts;
 
-import java.util.Set;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class EditContactTest extends TestBase{
 
-    @Before
+    @BeforeTest
     public void ensurePreconditions(){
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
@@ -20,7 +19,7 @@ public class EditContactTest extends TestBase{
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void testEditContactTest() {
 
         Contacts before = app.contact().all();

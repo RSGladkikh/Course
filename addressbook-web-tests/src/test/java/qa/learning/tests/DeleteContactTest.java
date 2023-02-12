@@ -1,7 +1,7 @@
 package qa.learning.tests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import qa.learning.model.ContactData;
 import qa.learning.model.Contacts;
 
@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class DeleteContactTest extends TestBase{
 
-    @Before
+    @BeforeTest
     public void ensurePreconditions(){
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {

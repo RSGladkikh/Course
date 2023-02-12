@@ -1,7 +1,7 @@
 package qa.learning.tests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import qa.learning.model.GroupData;
 import qa.learning.model.Groups;
 
@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class DeleteGroupTest extends TestBase {
 
-    @Before
+    @BeforeTest
     public void ensurePreconditions(){
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {

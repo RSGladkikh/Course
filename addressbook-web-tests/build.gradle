@@ -7,14 +7,13 @@ repositories {
 
 dependencies {
     implementation 'org.hamcrest:hamcrest:2.2'
-    implementation 'junit:junit:4.13.2'
+    implementation 'org.testng:testng:7.7.1'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.7.2'
     implementation 'com.beust:jcommander:1.82'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
+
 }
 
 test {
-    useJUnit()
-    testLogging {
-        events "passed"
-    }
+    useTestNG()
 }
